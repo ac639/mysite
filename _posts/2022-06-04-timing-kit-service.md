@@ -34,21 +34,19 @@ Some people also drain the coolant on the two bolts, you can get away with not t
 
 3. Remove the upper radiator hose clamps and disconnect from engine and radiator
 
-    ![Coolant hose](/assets/images/car/timing/upperhose.jpg)
-
     ![Coolant_hose]({{ "/assets/images/car/timing/upperhose.jpg" | relative_url }})  
 
 4. Disconnect the negative terminal on your battery and unplug your oxygen sensors
 
-    ![Oxygen sensors](/assets/images/car/timing/oxygensensors.jpg)
+    ![Oxygen_sensors]({{ "/assets/images/car/timing/oxygensensors.jpg" | relative_url }})  
 
 5.  Remove the bolts and front fan shrouds, unplug the connectors for the fans (be careful)
 
 6.  Remove the alternator belt, mark or measure the adjuster bolt. Begin by first unscrewing the center bolt, then break loose the bolt to the right, then unscrew the top bolt until you can push the alternator down to remove the belt
 
-    ![alternator1](/assets/images/car/timing/alternator_1.jpg)
+    ![alternator1]({{ "/assets/images/car/timing/alternator_1.jpg" | relative_url }})  
     <br>
-    ![alternator2](/assets/images/car/timing/alternator_2.jpg)
+    ![alternator2]({{ "/assets/images/car/timing/alternator_2.jpg" | relative_url }})  
 
 7. Remove the belt for the AC compressor. Note, this is a stretch belt, and while most will say you need to cut the belt, you don't actually need to!
 Here is the trick, grab a 22mm socket and ratchet to put onto the crank pulley bolt, gran a pry bar. Set the middle of the pry bar to use the alternator mount as leverage and
@@ -57,14 +55,16 @@ push against the belt little by little by rotating the engine clockwise with you
 8. Now we can remove the harmonic balancer/pulley, insert the Company23 tool into the holes, grab a long breaker bar, and loosen the bolt. It's in there pretty tight.
 
 9. Now we can start with removing the timing cover, if it is very dirty, you can spray some brake clean/engine degreaser or compressed air
-    ![timingcover](/assets/images/car/timing/valvecoverbolts.jpg)
+
+    ![timingcover]({{ "/assets/images/car/timing/valvecoverbolts.jpg" | relative_url }})  
 
 10. After removing the timing cover, you need to re-isnert the bolt, and rotate the engine until you see white marks on the belt, and line them up to the marks on the engine
-    ![timing1](/assets/images/car/timing/timing1.jpg)
+
+    ![timing1]({{ "/assets/images/car/timing/timing1.jpg" | relative_url }})  
     <br>
-    ![timing2](/assets/images/car/timing/timing2.jpg)
+    ![timing2]({{ "/assets/images/car/timing/timing2.jpg" | relative_url }})  
     <br>
-    ![timing3](/assets/images/car/timing/timing1.jpg)
+    ![timing3]({{ "/assets/images/car/timing/timing3.jpg" | relative_url }})  
 
 11. With everything marked, you can begin by removing the lower passenger side idler pulley, then the upper passenger side idler pulley, you should then be able to remove the belt.
 
@@ -72,7 +72,7 @@ push against the belt little by little by rotating the engine clockwise with you
 
 13. You can then remove the 10mm water pump bolts, replace with new rubber liner that comes with the kit, gasket, and thermostat if you decided to replace it (probably should if yours has a lot of mileage) make sure you install the thermostat in correct orientation
 
-    ![oldparts](/assets/images/car/timing/oldparts.jpg)
+    ![oldparts]({{ "/assets/images/car/timing/oldparts.jpg" | relative_url }})  
 
 15. If replacing thermostat, torque down the thermostat housing bolts to 8.9 ft lbs or 12Nm. Use the same torque figures when installing the waterpump, torque in a circle
 starting from the top right bolt and moving your way under to the left and then back around. 
