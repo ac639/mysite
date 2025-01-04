@@ -36,6 +36,9 @@ Some people also drain the coolant on the two bolts, you can get away with not t
 
     ![Coolant hose](/assets/images/car/timing/upperhose.jpg)
 
+    ![Coolant hose]({{ '/assets/images/car/timing/upperhose.jpg' | relative_url }})
+
+
 4. Disconnect the negative terminal on your battery and unplug your oxygen sensors
 
     ![Oxygen sensors](/assets/images/car/timing/oxygensensors.jpg)
