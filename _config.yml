@@ -76,6 +76,9 @@ header_transparent: false
 # lang: "en"  # default lang is en
 
 # Translate languges
+translate_langs: []
+
+# Translate languges
 # langs refer to https://cloud.google.com/translate/docs/languages
 # translate_langs:
 #   - lang: en
