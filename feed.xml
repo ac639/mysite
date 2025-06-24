@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-06-24T04:16:04+00:00</updated><id>/feed.xml</id><title type="html">Andre C</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><author><name>ac639</name></author><entry><title type="html">EzDeploy Java Tool</title><link href="/software/github/2024/09/02/EzDeployTool.html" rel="alternate" type="text/html" title="EzDeploy Java Tool" /><published>2024-09-02T00:00:00+00:00</published><updated>2024-09-02T00:00:00+00:00</updated><id>/software/github/2024/09/02/EzDeployTool</id><content type="html" xml:base="/software/github/2024/09/02/EzDeployTool.html"><![CDATA[<p><a href="https://github.com/ac639/EzDeployTool" target="_blank">Download it here!</a></p>
+
+<h2 id="ezdeptool">EzDepTool</h2>
+
+<p>An improvement to my first deployment/packaging system ‘dep_system_rabbitmq’ created in 2019
+This was made to provide some speedup in daily development. While it is not a versioning  system, it also keeps track of bundles for organizational reasons.</p>
+
+<p>This may or may not be of any use to you. I made this to fit my specific needs. 
+I wanted a way to write code/develop on one system (Windows) and package a snapshot of my code on to a server (Linux) and automatically deploy that code on the same or other machine for further development or production. 
+I also implemented Apache Kafka for robust messaging, this allows you to have separate machines for Kafka, the MySQL server, as well as several dev, qa, and prod machines</p>
+
+<p>Feature list (WIP not all have been implemented):</p>
+<ul>
+  <li>Command line tool with arg support for multiple features</li>
+  <li>Specify working directory</li>
+  <li>Record bundle version</li>
+  <li>Transfer bundle to another machine</li>
+  <li>Set a “deployment” folder for ‘prod’ machines to automatically unpack bundles (quick web server deployment)</li>
+  <li>Perform all communication through Kafka because why not?</li>
+  <li>Hardcode or live set one or more multiple dev/qa/prod machines</li>
+  <li>*Docker Support (FOR EVEN QUICKER DEPLOYMENT ON NEW SYSTEMS)</li>
+</ul>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>MariaDB/MySQL database with configuration to allow remote host access</li>
+  <li>Java 21</li>
+  <li>Apache Kafka installed on host system</li>
+</ul>
+
+<h2 id="how-to-use">How to Use</h2>
+
+<ul>
+  <li>Install Apache Kafka and move to /opt/kafka directory</li>
+  <li>Create /tmp/kraft-combined-logs</li>
+  <li>Format storage ./kafka-storage.sh format –config /opt/kafka/config/server.properties –cluster-id $(uuidgen)</li>
+</ul>
+
+<p>(any command with ./ assumes you are in /opt/kafka folder)</p>
+<ul>
+  <li>Start Kafka ./kafka-server-start.sh /opt/kafka/config/server.properties</li>
+  <li>Create topics</li>
+  <li>kafka-topics.sh –create –topic db-queries –bootstrap-server localhost:9092 –partitions 1 –replication-factor 1</li>
+  <li>kafka-topics.sh –create –topic db-responses –bootstrap-server localhost:9092 –partitions 1 –replication-factor 1</li>
+  <li>
+    <p>kafka-topics.sh –create –topic deployment –bootstrap-server localhost:9092 –partitions 1 –replication-factor 1</p>
+  </li>
+  <li>Run Application</li>
+  <li>java -jar ezdeptool.jar dev -m “My first bundle”</li>
+</ul>
+
+<h2 id="debugging">Debugging</h2>
+
+<ul>
+  <li>kafka-console-consumer.sh –topic db-queries –from-beginning –bootstrap-server localhost:9092</li>
+  <li>kafka-console-consumer.sh –topic db-responses –from-beginning –bootstrap-server localhost:9092</li>
+  <li>kafka-console-consumer.sh –topic deployment –from-beginning –bootstrap-server localhost:9092</li>
+</ul>
+
+<h2 id="mysql-errors">MySQL Errors</h2>
+
+<ul>
+  <li>Edit  /etc/mysql/mariadb.conf.d/50-server.cnf</li>
+  <li>Set bind-address to 0.0.0.0</li>
+</ul>]]></content><author><name>Andre C</name></author><category term="Software" /><category term="Github" /><summary type="html"><![CDATA[Download it here!]]></summary></entry><entry><title type="html">RabbitMQ Bundling Tool</title><link href="/software/github/2024/08/16/deployment-system-rabitmqy.html" rel="alternate" type="text/html" title="RabbitMQ Bundling Tool" /><published>2024-08-16T00:00:00+00:00</published><updated>2024-08-16T00:00:00+00:00</updated><id>/software/github/2024/08/16/deployment-system-rabitmqy</id><content type="html" xml:base="/software/github/2024/08/16/deployment-system-rabitmqy.html"><![CDATA[<p><a href="https://github.com/ac639/deployment_system_rabbitmq" target="_blank">Download it here!</a></p>
+
+<h2 id="what-is-it">What is it?</h2>
+
+<p>A linux targeted bundling system that bundles and transfers your code across multiple devices on the same network and logs bundle versions and whether or not they pass 
+on from QA testing to production. There is no “central” program, rather modular PHP and bash script files.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+  <li>RabbitMQ</li>
+  <li>PHP</li>
+</ul>
+
+<h2 id="how-to-use">How to Use</h2>
+
+<ul>
+  <li>Self explanatory, run mkbundle.sh first</li>
+</ul>]]></content><author><name>Andre C</name></author><category term="Software" /><category term="Github" /><summary type="html"><![CDATA[Download it here!]]></summary></entry><entry><title type="html">Setting up an e-mail server on Slackware Linux/RHEL</title><link href="/linux/2024/03/21/linux-email-server.html" rel="alternate" type="text/html" title="Setting up an e-mail server on Slackware Linux/RHEL" /><published>2024-03-21T00:00:00+00:00</published><updated>2024-03-21T00:00:00+00:00</updated><id>/linux/2024/03/21/linux-email-server</id><content type="html" xml:base="/linux/2024/03/21/linux-email-server.html"><![CDATA[<h2 id="a-basicrudimentary-e-mail-server-that-you-can-expose-to-the-public-internet">A basic/rudimentary e-mail server that you can expose to the public internet</h2>
+
+<p>While this guide was made for Slackware, it should work for RHEL as well.</p>
+
+<p>This is assuming you already have DNS set up as well as Apache…</p>
+
+<h3 id="required-software">Required Software</h3>
+<ul>
+  <li>Postfix</li>
+  <li>Dovecot</li>
+  <li>Spamassassin, Amavisd-new</li>
+  <li>Clamav</li>
+</ul>
+
+<h2 id="set-up-your-hosts-file">Set up your hosts file</h2>
+<p>/etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.1.20   yourhostname.yourdomainname.com      your hostname</p>
+
+<h1 id="install-the-required-software-above-either-by-compiling-from-source-slackbuilds-or-if-on-rhel-use-yum">Install the required software above either by compiling from source, SlackBuilds, or if on RHEL use yum</h1>
+
+<h1 id="configure-postfix">Configure Postfix</h1>
+
+<p>Open Postfix config file /etc/postfix/main.cf and find and edit the following lines:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Uncomment and set your mail server FQDN ##
+myhostname = server.unixmen.com
+
+## Uncomment and Set domain name ##
+mydomain = unixmen.com
+
+## Uncomment ##
+myorigin = $mydomain
+
+## Set ipv4 ##
+inet_interfaces = all
+
+## Change to all ##
+inet_protocols = all
+
+## Comment ##
+
+#mydestination = $myhostname, localhost.$mydomain, localhost,
+
+## Uncomment ##\\
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+
+##b Uncomment and add IP range ##
+mynetworks = 192.168.1.0/24, 127.0.0.0/8
+
+## Uncomment ##
+home_mailbox = Maildir/
+
+</code></pre></div></div>
+
+<p>Save and exit the file. Start Postfix service now:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl restart postfix
+</code></pre></div></div>
+
+<h2 id="test-skip-this-if-you-want">Test (skip this if you want)</h2>
+
+<p>Create a test user and set a password</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>useradd testpf
+passwd testpf
+</code></pre></div></div>
+
+<p>Test with telnet</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet localhost smtp
+
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+220 server.unixmen.com ESMTP Postfix
+ehlo localhost
+250-server.unixmen.com
+250-PIPELINING
+250-SIZE 10240000
+250-VRFY
+250-ETRN
+250-ENHANCEDSTATUSCODES
+250-8BITMIME
+250 DSN
+mail from:&lt;sk&gt;
+250 2.1.0 Ok
+rcpt to:&lt;sk&gt;
+250 2.1.5 Ok
+data
+354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
+welcome to unixmen mail system
+.
+250 2.0.0 Ok: queued as 3E68E284C
+quit
+221 2.0.0 Bye
+Connection closed by foreign host.
+</code></pre></div></div>
+
+<h2 id="end-of-test-section-proceed-if-all-is-well">End of Test section, proceed if all is well</h2>
+
+<h1 id="install-and-configure-dovecot">Install and configure Dovecot</h1>
+
+<p>Open the file /etc/dovecot/dovecot.conf file and edit</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protocols = imap pop3 lmtp
+</code></pre></div></div>
+
+<p>Open /etc/dovecot/conf.d/10-mail.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mail_location = maildir:~/Maildir	
+</code></pre></div></div>
+
+<p>Open /etc/dovecot/conf.d/10-auth.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>disable_plaintext_auth = yes
+
+auth_mechanisms = plain login	
+</code></pre></div></div>
+
+<p>Open the file /etc/dovecot/conf.d/10-master.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mode = 0600
+   user = postfix
+    group = postfix
+</code></pre></div></div>
+
+<p>Start dovecot</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl start dovecot
+</code></pre></div></div>
+
+<h2 id="configure-sasl">Configure SASL</h2>
+
+<p>Open /etc/postfix/main.cf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smtpd_sasl_auth_enable = yes
+broken_sasl_auth_clients = yes
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_security_options = noanonymous
+
+smtpd_recipient_restrictions =
+    permit_mynetworks,
+    permit_sasl_authenticated,
+    reject_unauth_destination
+</code></pre></div></div>
+
+<p>Open /etc/dovecot.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>auth default {
+    mechanisms = plain login
+    passdb pam {
+    }
+    userdb passwd {
+    }
+    user = root
+    socket listen {
+      client {
+        path = /var/spool/postfix/private/auth
+        mode = 0660
+        user = postfix
+        group = postfix
+      }
+    }
+}
+</code></pre></div></div>
+
+<h2 id="generate-ssl-certificates-to-later-configure-tls">Generate SSL certificates (to later configure TLS)</h2>
+
+<p>Ensure crypto-utils is installed</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>genkey --days 365 mail.example.com
+</code></pre></div></div>
+
+<p>The keypair should be here</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/pki/tls/certs/mail.example.com.cert  # public cert
+/etc/pki/tls/private/mail.example.com.key  # private key
+</code></pre></div></div>
+
+<p>Open /etc/postfix/main.cf:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>smtpd_tls_security_level = may
+smtpd_tls_key_file = /etc/pki/tls/private/mail.example.com.key
+smtpd_tls_cert_file = /etc/pki/tls/certs/mail.example.com.cert
+# smtpd_tls_CAfile = /etc/pki/tls/root.crt
+smtpd_tls_loglevel = 1
+smtpd_tls_session_cache_timeout = 3600s
+smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_tls_cache
+tls_random_source = dev:/dev/urandom
+tls_random_exchange_name = /var/lib/postfix/prng_exch
+smtpd_tls_auth_only = yes
+
+content_filter=amavisfeed:[127.0.0.1]:10024
+</code></pre></div></div>
+
+<p>Open /etc/dovecot.conf:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>protocols = imap imaps pop3 pop3s
+#disable_plaintext_auth = no
+#ssl_disable = no
+ssl_cert_file = /etc/pki/tls/certs/mail.example.com.cert
+ssl_key_file = /etc/pki/tls/private/mail.example.com.key
+ssl_cipher_list = ALL:!LOW:!SSLv2 
+</code></pre></div></div>
+
+<p>Restart postfix and dovecot</p>
+
+<h1 id="configuring-amavisd-newclamav-and-spamassassin">Configuring Amavisd-new/ClamAV and Spamassassin</h1>
+
+<p>Check</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>groups clamav
+</code></pre></div></div>
+
+<p>If clamav isn’t added run</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gpasswd -a clamav amavis
+</code></pre></div></div>
+
+<p>Open /etc/clamd.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LocalSocket /var/run/clamav/clamd.sock
+</code></pre></div></div>
+
+<p>Open /etc/amavisd.conf</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$max_servers = 2;                   # num of pre-forked children (2..30 is common), -m
+$daemon_user  = "amavis";           # (no default;  customary: vscan or amavis), -u
+$daemon_group = "amavis";           # (no default;  customary: vscan or amavis), -g
+...
+$inet_socket_port = 10024;          # listen on this local TCP port(s)
+...
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+$mydomain = 'example.com';                 
+$MYHOME = '/var/amavis';                 
+$helpers_home = "$MYHOME/var";             
+$lock_file = "$MYHOME/var/amavisd.lock";   
+$pid_file  = "$MYHOME/var/amavisd.pid";    
+$myhostname = 'mail.example.com';         
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$sa_tag_level_deflt  = 2.0;               
+$sa_tag2_level_deflt = 6.2;               
+$sa_kill_level_deflt = 6.9;                
+$sa_dsn_cutoff_level = 10;                
+# $sa_quarantine_cutoff_level = 25;        
+$penpals_bonus_score = 8;                  
+$penpals_threshold_high = $sa_kill_level_deflt;        
+$sa_mail_body_size_limit = 400*1024;       
+$sa_local_tests_only = 0;                  
+</code></pre></div></div>
+
+<p>Okay, that was a lot, theres a bit more to edit</p>
+
+<p>Look for the clamav section</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### http://www.clamav.net/
+['ClamAV-clamd',
+  \&amp;ask_daemon, ["CONTSCAN {}\n", "/var/run/clamav/clamd.sock"],
+  qr/\bOK$/, qr/\bFOUND$/,
+  qr/^.*?: (?!Infected Archive)(.*) FOUND$/ ],
+# # NOTE: run clamd under the same user as amavisd, or run it under its own
+# #   uid such as clamav, add user clamav to the amavis group, and then add
+# #   AllowSupplementaryGroups to clamd.conf;
+# # NOTE: match socket name (LocalSocket) in clamav.conf to the socket name in
+# #   this entry; when running chrooted one may prefer socket "$MYHOME/clamd".
+</code></pre></div></div>
+
+<p>Now open /etc/master.cf and add this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>amavisfeed unix    -       -       n        -      2     lmtp
+    -o lmtp_data_done_timeout=1200
+    -o lmtp_send_xforward_command=yes
+    -o disable_dns_lookups=yes
+    -o max_use=20
+	
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1:10025 inet n    -       n       -       -     smtpd
+    -o content_filter=
+    -o smtpd_delay_reject=no
+    -o smtpd_client_restrictions=permit_mynetworks,reject
+    -o smtpd_helo_restrictions=
+    -o smtpd_sender_restrictions=
+    -o smtpd_recipient_restrictions=permit_mynetworks,reject
+    -o smtpd_data_restrictions=reject_unauth_pipelining
+    -o smtpd_end_of_data_restrictions=
+    -o smtpd_restriction_classes=
+    -o mynetworks=127.0.0.0/8
+    -o smtpd_error_sleep_time=0
+    -o smtpd_soft_error_limit=1001
+    -o smtpd_hard_error_limit=1000
+    -o smtpd_client_connection_count_limit=0
+    -o smtpd_client_connection_rate_limit=0
+    -o receive_override_options=no_header_body_checks,no_unknown_recipient_checks,no_milters,no_address_mappings
+    -o local_header_rewrite_clients=
+    -o smtpd_milters=
+    -o local_recipient_maps=
+    -o relay_recipient_maps=
+</code></pre></div></div>
+
+<h2 id="reload-postfixdovecot">Reload postfix/dovecot</h2>
+
+<p>You should be good to go and have a working public facing e-mail server that can filter spam</p>
+
+<h2 id="congratulations-you-are-done-but-waitwant-a-graphical-frontend">Congratulations, you are done! But wait….want a graphical frontend?</h2>
+
+<p>The basic is Squirrelmail. Roundcubemail is a step up, but I prefer <a href="https://www.rainloop.net/" target="_blank">Rainloop</a></p>]]></content><author><name>Andre C</name></author><category term="Linux" /><summary type="html"><![CDATA[A basic/rudimentary e-mail server that you can expose to the public internet]]></summary></entry><entry><title type="html">My Github Page</title><link href="/software/github/2023/07/17/Github-Page.html" rel="alternate" type="text/html" title="My Github Page" /><published>2023-07-17T00:00:00+00:00</published><updated>2023-07-17T00:00:00+00:00</updated><id>/software/github/2023/07/17/Github-Page</id><content type="html" xml:base="/software/github/2023/07/17/Github-Page.html"><![CDATA[<h1 id="visit-my-github-page-to-see-more"><a href="https://github.com/ac639" target="_blank">Visit my Github Page to see more</a></h1>
+
+<p>Thanks for stopping by, if you want to see more of my projects, check my github.</p>]]></content><author><name>Andre C</name></author><category term="Software" /><category term="Github" /><summary type="html"><![CDATA[Visit my Github Page to see more]]></summary></entry><entry><title type="html">Replacing Timing belt/idlers on EJ253 SOHC NA</title><link href="/hobbies_carstuff/2022/06/04/timing-kit-service.html" rel="alternate" type="text/html" title="Replacing Timing belt/idlers on EJ253 SOHC NA" /><published>2022-06-04T00:00:00+00:00</published><updated>2022-06-04T00:00:00+00:00</updated><id>/hobbies_carstuff/2022/06/04/timing-kit-service</id><content type="html" xml:base="/hobbies_carstuff/2022/06/04/timing-kit-service.html"><![CDATA[<h1 id="alrightyyeah-codingsetting-up-servers-isnt-the-only-thing-i-do">Alrighty…..yeah coding/setting up servers isn’t the only thing I do</h1>
+
+<p>Tools you will need</p>
+
+<ul>
+  <li>AISIN Timing Belt Kit</li>
+  <li>Gates AC Pulley Install Tool</li>
+  <li>Long breaker bar</li>
+  <li>1/2” and 3/8/” or 1/4” Torque Wrench</li>
+  <li>22mm 1/2” Socket for crank pulley bolt (and some old engine oil/lube)</li>
+  <li>Subaru Coolant and two bottles of conditioner</li>
+  <li>OEM thermostat (optional depending on mileage)</li>
+  <li>Socket set</li>
+  <li>Hose clamp pliers (optional)</li>
+  <li>Right angle impact (when checking timing you need to rotate the engine and the crank bolt can sometimes can stuck and will not come out without impact)</li>
+  <li>Company23 Crank Harmonic Balancer Removal Tool (TECHNICALLY optional but helps removing and torquing the crank pulley/balancer)</li>
+  <li>Other stuff that I do not remember</li>
+</ul>
+
+<p>I do not have photos for everything…..you will need to look online</p>
+
+<ol>
+  <li>
+    <p>We need to drain the coolant, begin by locating the petcock drain valve on the radiator, near the driver side. 
+Some people also drain the coolant on the two bolts, you can get away with not touching those and just being ready to catch the fluid later on</p>
+  </li>
+  <li>
+    <p>Remove the lower radiator hose clamp and disconnect hose from radiator (fluid will come out from hose be ready)</p>
+  </li>
+  <li>
+    <p>Remove the upper radiator hose clamps and disconnect from engine and radiator</p>
+
+    <p><img src="/assets/images/car/timing/upperhose.jpg" alt="Coolant_hose" /></p>
+  </li>
+  <li>
+    <p>Disconnect the negative terminal on your battery and unplug your oxygen sensors</p>
+
+    <p><img src="/assets/images/car/timing/oxygensensors.jpg" alt="Oxygen_sensors" /></p>
+  </li>
+  <li>
+    <p>Remove the bolts and front fan shrouds, unplug the connectors for the fans (be careful)</p>
+  </li>
+  <li>
+    <p>Remove the alternator belt, mark or measure the adjuster bolt. Begin by first unscrewing the center bolt, then break loose the bolt to the right, then unscrew the top bolt until you can push the alternator down to remove the belt</p>
+
+    <p><img src="/assets/images/car/timing/alternator_1.jpg" alt="alternator1" /><br />
+<br />
+<img src="/assets/images/car/timing/alternator_2.jpg" alt="alternator2" /></p>
+  </li>
+  <li>
+    <p>Remove the belt for the AC compressor. Note, this is a stretch belt, and while most will say you need to cut the belt, you don’t actually need to!
+Here is the trick, grab a 22mm socket and ratchet to put onto the crank pulley bolt, gran a pry bar. Set the middle of the pry bar to use the alternator mount as leverage and
+push against the belt little by little by rotating the engine clockwise with your ratchet. You can walk the belt off of the pulley.</p>
+  </li>
+  <li>
+    <p>Now we can remove the harmonic balancer/pulley, insert the Company23 tool into the holes, grab a long breaker bar, and loosen the bolt. It’s in there pretty tight.</p>
+  </li>
+  <li>
+    <p>Now we can start with removing the timing cover, if it is very dirty, you can spray some brake clean/engine degreaser or compressed air</p>
+
+    <p><img src="/assets/images/car/timing/valvecoverbolts.jpg" alt="timingcover" /></p>
+  </li>
+  <li>
+    <p>After removing the timing cover, you need to re-isnert the bolt, and rotate the engine until you see white marks on the belt, and line them up to the marks on the engine</p>
+
+    <p><img src="/assets/images/car/timing/timing1.jpg" alt="timing1" /><br />
+<br />
+<img src="/assets/images/car/timing/timing2.jpg" alt="timing2" /><br />
+<br />
+<img src="/assets/images/car/timing/timing3.jpg" alt="timing3" /></p>
+  </li>
+  <li>
+    <p>With everything marked, you can begin by removing the lower passenger side idler pulley, then the upper passenger side idler pulley, you should then be able to remove the belt.</p>
+  </li>
+  <li>
+    <p>Remove the toothed idler/sprocket, followed by the hydraulic tensioner</p>
+  </li>
+  <li>
+    <p>You can then remove the 10mm water pump bolts, replace with new rubber liner that comes with the kit, gasket, and thermostat if you decided to replace it (probably should if yours has a lot of mileage) make sure you install the thermostat in correct orientation</p>
+
+    <p><img src="/assets/images/car/timing/oldparts.jpg" alt="oldparts" /></p>
+  </li>
+  <li>
+    <p>If replacing thermostat, torque down the thermostat housing bolts to 8.9 ft lbs or 12Nm. Use the same torque figures when installing the waterpump, torque in a circle
+starting from the top right bolt and moving your way under to the left and then back around.</p>
+  </li>
+  <li>
+    <p>Before installing the new pulleys, get the hydrualic tensioner, remove the pin and bleed tensioner by pushing the piston down a few times using a c clamp or bench vice but
+the unit needs to remain upright to purge and prevent air coming in.</p>
+  </li>
+  <li>
+    <p>Install the upper passenger side pulley, hydraulic tensioner (do not release the pin yet) and torque to 28.8ft lb</p>
+  </li>
+  <li>
+    <p>Install the belt, match the white lines on the belt with the marks on the engine/covers as shown above, and then install the toothed/sprocket gear (rotate the gear if it does not want to go on the belt) and then the lower passenger side pulley. You will need
+to push up against the belt to line it up correctly. Torque all to 28.8 ft lb.</p>
+  </li>
+  <li>
+    <p>Pull the pin on the tensioner, rotate the engine two times, the marks should still be aligned.</p>
+  </li>
+  <li>
+    <p>If all is good, congratulations you’ve got new timing belt and components.</p>
+  </li>
+  <li>
+    <p>Reinstall lower radiator hose</p>
+  </li>
+  <li>
+    <p>Remove the crank pulley bolt….if you can with a regular ratchet, that’s why I recommended having a compact right angle impact to get that bolt out.</p>
+  </li>
+  <li>
+    <p>Put the valve cover back on, install the harmonic balancer, cover the bolt with oil, torque the balancer/pulley to 34.7ft lbs then to 130 ft lbs</p>
+  </li>
+  <li>
+    <p>Reinstall the rest of the components, lastly re-connect the negative terminal on the battery. Before you start the car, you need to turn the key in the ignition
+only once (accessory mode) and then wait 15 seconds before cranking the engine. Otherwise it won’t crack on the first start, a Subaru/throttle body thing.</p>
+  </li>
+  <li>
+    <p>Enjoy!</p>
+  </li>
+</ol>]]></content><author><name>Andre C</name></author><category term="Hobbies_CarStuff" /><summary type="html"><![CDATA[Alrighty…..yeah coding/setting up servers isn’t the only thing I do]]></summary></entry></feed>
